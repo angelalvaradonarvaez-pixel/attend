@@ -1,7 +1,20 @@
  
 <?php
-   require_once './definitions.php';
-   require_once './functions.php'; 
+session_start();
+if (!isset($_GET['topic'])) {
+    $_SESSION['tema'] = 'null';
+} else {
+    $_SESSION['tema'] = $_GET['topic'];
+}
+
+if (!isset($_GET['subtopic'])) {
+    $_SESSION['subtema'] = 'null';
+} else {
+    $_SESSION['subtema'] = $_GET['subtopic'];
+}
+
+require_once './definitions.php';
+require_once './functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,5 +1,6 @@
-<?php  
-function render_steampunk_menu($menu_data) {
+<?php
+function render_steampunk_menu($menu_data)
+{
     ob_start();
     ?>
     <nav>
@@ -7,15 +8,17 @@ function render_steampunk_menu($menu_data) {
             <?php foreach ($menu_data as $topic_key => $topic): ?>
                 <li class="menu-item">
                     <!-- Pass the topic identifier in the URL -->
-                    <a href="index.php?topic=<?php echo urlencode($topic_key); ?>" class="menu-link">
+                    <a href="index.php?topic=<?php echo htmlspecialchars($topic['title']); ?>" class="menu-link">
                         <?php echo htmlspecialchars($topic['title']); ?>
                     </a>
                     <ul class="submenu">
                         <?php foreach ($topic['subtopics'] as $sub_key => $subtopic): ?>
                             <li class="submenu-item">
                                 <!-- Pass both topic and subtopic in the URL -->
-                                <a href="index.php?topic=<?php echo urlencode($topic_key); ?>&subtopic=<?php echo urlencode($sub_key); ?>" class="submenu-link">
-                                    <?php echo htmlspecialchars($subtopic); ?>
+                              <!--  <a href="index.php?topic=<?php echo urlencode($topic_key); ?>&subtopic=<?php echo urlencode($sub_key); ?>" class="submenu-link">
+                                   -->
+                               <a href="index.php?topic=<?php echo htmlspecialchars($topic['title']); ?>&subtopic=<?php echo htmlspecialchars($subtopic); ?>" class="submenu-link">  
+                              <?php echo htmlspecialchars($subtopic); ?>
                                 </a>
                             </li>
                         <?php endforeach; ?>
