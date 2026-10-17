@@ -2,19 +2,18 @@
 <?php
 session_start();
 if (!isset($_GET['topic'])) {
-    $_SESSION['tema'] = 'null';
+    $tema = 'Menu';
 } else {
-    $_SESSION['tema'] = $_GET['topic'];
+    $tema = $_GET['topic'];
 }
 
 if (!isset($_GET['subtopic'])) {
-    $_SESSION['subtema'] = 'null';
+    $subtema = 'null';
 } else {
-    $_SESSION['subtema'] = $_GET['subtopic'];
+    $subtema = $_GET['subtopic'];
 }
-
 require_once './definitions.php';
-require_once './functions.php';
+require_once './menu_functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,9 +33,31 @@ require_once './functions.php';
             <h1>Control de asistencia</h1>
         </div> 
     </header>
+
+ <?php switch ($tema) {
+    case 'Catalogos': ?>
+        <?php switch ($subtema) {
+            case 'Turnos': ?>
+               <?php echo " <script>document.location.href= './turnos.php'; </script>"; ?>
+          <?php break; ?> 
+          <?php case 'Departamentos': ?>
+               <?php echo " <script>document.location.href= './departamentos.php'; </script>"; ?>
+          <?php break; ?> 
+          <?php case 'Sucursales': ?>
+                <?php echo " <script>document.location.href= './sucursales.php'; </script>"; ?>
+         <?php break;
+        } ?>    
+    <?php break; ?>
+   
+    <?php } ?>
+ 
+   
     <?php echo render_steampunk_menu($menu_data); ?>
-    <footer>
-       <!-- <p>&copy; <?php echo date('Y'); ?> My Website. All rights reserved.</p> -->
+    
+     <footer>
+      <!--     <p>&copy; <?php echo date('Y'); ?> My Website. All rights reserved.</p>  -->
     </footer>
+  
+
 </body>
 </html>

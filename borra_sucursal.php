@@ -5,6 +5,7 @@ if (isset($_REQUEST['registro'])) {
 } else {
     echo "Error, No se recibio el parametro 'registro'";
 }
+
 ?>
 <html><head>  
  <meta http-equiv="content-type" content="text/html;charset=utf-8">

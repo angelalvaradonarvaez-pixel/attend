@@ -1,0 +1,188 @@
+<?php
+// Initialize variables for feedback message
+$message = "";
+$numeric_val = "";
+$text_val = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Capture and sanitize inputs
+    $numeric_val = htmlspecialchars(trim($_POST['numeric_field'] ?? ''));
+    $text_val = htmlspecialchars(trim($_POST['text_field'] ?? ''));
+    
+    if ($numeric_val !== '' && $text_val !== '') {
+        $message = "Transmission Received! Coordinates/Pressure: <strong>{$numeric_val}</strong> | Destination: <strong>{$text_val}</strong>";
+    } else {
+        $message = "Error: Please fill out all fields of the ledger.";
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steampunk Ledger Entry</title>
+    <!-- Import Victorian-style serif font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=IM+Fell+English&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brass-dark: #3a2e2b;
+            --brass-light: #d4af37;
+            --brass-mid: #b8860b;
+            --leather: #1e1613;
+            --parchment: #f4e8d1;
+            --parchment-dark: #d8c29d;
+        }
+
+        body {
+            background-color: #120d0b;
+            background-image: radial-gradient(circle, #2b201b 0%, #120d0b 100%);
+            color: var(--parchment);
+            font-family: 'IM Fell English', serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--brass-light);
+            text-shadow: 2px 2px 4px #000;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid var(--brass-mid);
+            padding-bottom: 10px;
+        }
+
+        /* Steampunk Ledger Container (Form Box) */
+        .steampunk-ledger {
+            background: var(--leather);
+            border: 4px double var(--brass-mid);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.9), inset 0 0 15px rgba(184, 134, 11, 0.2);
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-family: 'Cinzel', serif;
+            color: var(--brass-light);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+
+        /* Input styling with parchment look */
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--parchment);
+            color: #2c221e;
+            border: 2px solid var(--brass-mid);
+            font-family: 'IM Fell English', serif;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+            border-radius: 2px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--brass-light);
+            background: #fff;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 0 8px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Hide increment/decrement spinner arrows for numeric inputs */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield; /* Firefox */
+        }
+
+        /* Brass Plate Submit Button */
+        .steampunk-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to bottom, #4a3b32 0%, #291f1a 100%);
+            color: var(--brass-light);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 2px solid var(--brass-mid);
+            border-radius: 2px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px #000;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .steampunk-btn:hover {
+            background: linear-gradient(to bottom, var(--brass-mid) 0%, var(--brass-dark) 100%);
+            color: #fff;
+            box-shadow: 0 6px 8px rgba(0,0,0,0.6), inset 0 0 8px rgba(212, 175, 55, 0.5);
+            transform: translateY(-1px);
+        }
+
+        /* Response Log Box */
+        .ledger-response {
+            margin-top: 25px;
+            padding: 15px;
+            background: var(--parchment);
+            color: #1e1613;
+            border: 2px dashed var(--brass-mid);
+            font-size: 1.05rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Aetherial Data Ledger</h1>
+
+    <div class="steampunk-ledger">
+        <form method="POST" action="">
+            
+            <div class="form-group">
+                <label for="numeric_field">Aether Pressure / Serial Code (Numeric):</label>
+                <!-- Numeric field without increment/decrement arrows -->
+                <input type="number" id="numeric_field" name="numeric_field" value="<?php echo $numeric_val; ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="text_field">Operator Designation / Port (Text):</label>
+                <!-- Standard text field -->
+                <input type="text" id="text_field" name="text_field" value="<?php echo $text_val; ?>" required>
+            </div>
+
+            <button type="submit" class="steampunk-btn">Commit to Registry</button>
+        </form>
+
+        <?php if (!empty($message)): ?>
+            <div class="ledger-response">
+                <?php echo $message; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+
+</body>
+</html>

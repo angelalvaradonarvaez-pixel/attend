@@ -1,4 +1,8 @@
 <?php
+
+require_once './definitions.php';
+require_once './menu_functions.php';
+
 // Database Configuration (Update with your PostgreSQL credentials)
 $host = 'localhost';
 $port = '5432';
@@ -63,6 +67,7 @@ if ($dbconn) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Sucursales</title>
     <script type="text/javascript" src="./js/funciones.js"></script>
+      <link rel="stylesheet" href="./css/style.css">
      <link rel="stylesheet" href="./css/style2.css">
     <!-- Import Victorian-style serif font -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=IM+Fell+English&display=swap" rel="stylesheet">
@@ -72,8 +77,10 @@ if ($dbconn) {
 
     <h1>Sucursales</h1>
 
-    <div class="steampunk-container">
+     <?php echo sucursales_steampunk_menu($menu_sucursales); ?>
+     <br>
 
+    <div class="steampunk-container">
         <?php if (!empty($db_error)): ?>
             <div class="error-box">
                 <?php echo htmlspecialchars($db_error); ?>

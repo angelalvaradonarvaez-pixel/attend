@@ -21,7 +21,7 @@ $menu_data = [
     [
         'title' => 'Catalogos',
         'subtopics' => [
-            'Turnos',
+            '  b89',
             'Departamentos',
             'Sucursales'
         ]
@@ -36,4 +36,23 @@ $menu_data = [
         ]
     ]
 ];
+
+$menu_sucursales = [
+    [
+        'title' => 'Agregar',
+        'subtopics' => [
+        ]
+    ],
+    [
+        'title' => 'Buscar',
+        'subtopics' => [
+        ]
+    ],    
+    [
+        'title' => 'Menu',
+         'subtopics' => [
+        ]
+    ]
+];
+
 ?>

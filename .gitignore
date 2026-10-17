@@ -1,2 +1,11 @@
-test.php
-test2.php
+    <?php switch ($subtema) {
+            case 'Turnos': ?>
+               <?php echo " <script>document.location.href= './turnos.php'; </script>"; ?>
+          <?php break; ?> 
+          <?php case 'Departamentos': ?>
+               <?php echo " <script>document.location.href= './departamentos.php'; </script>"; ?>
+          <?php break; ?> 
+          <?php case 'Sucursales': ?>
+                <?php echo " <script>document.location.href= './sucursales.php'; </script>"; ?>
+         <?php break; ?>  
+          }   
