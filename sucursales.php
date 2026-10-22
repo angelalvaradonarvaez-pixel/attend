@@ -70,8 +70,7 @@ if ($dbconn) {
       <link rel="stylesheet" href="./css/style.css">
      <link rel="stylesheet" href="./css/style2.css">
     <!-- Import Victorian-style serif font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=IM+Fell+English&display=swap" rel="stylesheet">
-  
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=IM+Fell+English&display=swap" rel="stylesheet">  
 </head>
 <body>
 
