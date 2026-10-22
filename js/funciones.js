@@ -21,3 +21,25 @@ function confirma_borrado(id,modulo)
     // alert("NO BORRAR")
     }
 }
+
+function valida_alta_sucursal(){ 
+//  valida el ID
+
+if ( document.fsucursal.text_idsuc.value.trim() == ""){ 
+    alert("Especifique el ID.");
+    document.fsucursal.text_idsuc.focus();
+     return;
+}
+
+//  valida la descripcion
+descripcion = document.fsucursal.text_dessuc.value;
+if (document.fsucursal.text_dessuc.value.trim() == ""){ 
+    alert("Especifique la descripción.");
+    document.fsucursal.text_dessuc.focus();
+     return;
+}
+//-------------------------------------------------------
+//el formulario es enviado
+//alert("Se envia el formulario para grabar.");
+   document.fsucursal.submit();
+}
