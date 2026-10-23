@@ -3,6 +3,12 @@
 require_once './definitions.php';
 require_once './menu_functions.php';
 
+   if (isset($_REQUEST['mensaje'])) {
+        $message = $_REQUEST['mensaje'];
+    } else {
+        $menssage = '';
+    }
+
 // Database Configuration (Update with your PostgreSQL credentials)
 $host = 'localhost';
 $port = '5432';
@@ -69,6 +75,7 @@ if ($dbconn) {
     <script type="text/javascript" src="./js/funciones.js"></script>
       <link rel="stylesheet" href="./css/style.css">
      <link rel="stylesheet" href="./css/style2.css">
+      <link rel="stylesheet" href="./css/style_captura.css">
     <!-- Import Victorian-style serif font -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=IM+Fell+English&display=swap" rel="stylesheet">
   
@@ -146,6 +153,12 @@ if ($dbconn) {
         <?php endif; ?>
 
     </div>
+
+      <?php if (!empty($message)): ?>
+            <div class="ledger-response">
+                <?php echo $message; ?>
+            </div>
+        <?php endif; ?>
 
 </body>
 </html>

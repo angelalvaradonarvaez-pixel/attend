@@ -51,12 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Control de asistencia</title>
     <script type="text/javascript" src="./js/funciones.js"></script>
 
-    <script type="text/javascript">
-        document.getElementById("BotonCancelar").onclick = function () {
-        location.href = "./sucursales.php";
-        };
-    </script>
-
     <link rel="stylesheet" href="./css/style_captura.css">
     <!-- Import Victorian-style serif font -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=IM+Fell+English&display=swap" rel="stylesheet"> 

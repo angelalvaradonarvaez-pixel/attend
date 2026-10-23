@@ -37,7 +37,9 @@ $stmt = $pdo->prepare($sql);
 
 if ($stmt->execute(['idsuc' => $idsuc])) {
     // echo "Record deleted successfully.";
-    echo " <script>document.location.href= './sucursales.php'; </script>";
+    $url = 'sucursales.php?mensaje=la sucursal ' . $idsuc . ' ! se ha borrado correctamente !';;
+    $url .= '&color=green';
+    echo "<SCRIPT>window.location='$url';</SCRIPT>";
 } else {
     echo 'Error deleting record.';
 }

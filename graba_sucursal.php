@@ -9,20 +9,17 @@ session_start();
 <br>
 
 <?php
-// AGREGA ARCHIVO DE FUNCIONES
-require_once ('til/funciones_til.php');
-require_once ('til/funciones_control_til.php');
 // --------------------------------------------------------------------------------
 //        SE FORMATEAN  (A MAYUSCULAS)  LAS VARIABLES
 // ----------------------------------------------------------------------------------
-$searchText = htmlspecialchars($_REQUEST['text_idsuc']);
-$descripcion = htmlspecialchars($_REQUEST['text_dessuc']);
+$idsuc = htmlspecialchars($_REQUEST['text_idsuc']);
+$dessuc = htmlspecialchars($_REQUEST['text_dessuc']);
 
-$searchText = strtoupper($searchText);
-$descripcion = strtoupper($descripcion);
+$idsuc = strtoupper($idsuc);
+$dessuc = strtoupper($dessuc);
 
-// echo "ID: " . $searchText . "<br>";
-// echo 'Descripción: ' . $descripcion . '<br>';
+// echo "ID: " . $idsuc . "<br>";
+// echo 'Descripción: ' . $dessuc . '<br>';
 // --------------------------------------------------------------------------------------------------------------------
 //            SE VALIDA QUE LA SUCURSAL NO ESTE REPETIDA
 // ---------------------------------------------------------------------------------------------------------------------
@@ -43,7 +40,7 @@ try {
     ]);
 
     // The value you want to look up in the 'idsuc' column
-    $targetId = $searchText;
+    $targetId = $idsuc;
 
     // Prepare the SQL query using LIMIT 1 for performance
     $sql = 'SELECT 1 FROM public."Sucursales" WHERE "idsuc" = :idsuc LIMIT 1';
@@ -67,7 +64,7 @@ try {
 // -------------------------------------------------------------------------------------------
 if ($exists)  // REGISTRO YA EXISTE
 {
-    $url = 'agregar_sucursal.php?mensaje=la sucursal ' . $searchText . ' ! ya existe  !';;
+    $url = 'agregar_sucursal.php?mensaje=la sucursal ' . $idsuc . ' ! ya existe  !';;
     $url .= '&color=red';
     $url .= '&text_idsuc=' . $_REQUEST['text_idsuc'];
     $url .= '&text_dessuc=' . $_REQUEST['text_dessuc'];
@@ -76,8 +73,8 @@ if ($exists)  // REGISTRO YA EXISTE
     // ---------------------------------------------------
     //                      SE GRABA EL REGISTRO
     // ----------------------------------------------------
-    $idsuc = htmlspecialchars($_REQUEST['text_idsuc']);
-    $dessuc = htmlspecialchars($_REQUEST['text_dessuc']);
+  //  $idsuc = htmlspecialchars($_REQUEST['text_idsuc']);
+  //  $dessuc = htmlspecialchars($_REQUEST['text_dessuc']);
 
     try {
         // Establish PostgreSQL connection using PDO
@@ -100,7 +97,7 @@ if ($exists)  // REGISTRO YA EXISTE
       //  $message = 'Record inserted successfully!';
       //   $messageType = 'success';
         // -----------------------------------------------------------
-        $url = 'sucursales.php?mensaje=la sucursal ' . $searchText . ' ! se ha registrado correctamente !';;
+        $url = 'sucursales.php?mensaje=la sucursal ' . $idsuc. ' ! se ha registrado correctamente !';;
         $url .= '&color=green';
         echo "<SCRIPT>window.location='$url';</SCRIPT>";
 
