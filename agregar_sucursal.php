@@ -1,4 +1,5 @@
 <?php
+require_once './funciones_generales.php';
 // Initialize variables for feedback message
 
 $text_idsuc = '';
@@ -9,35 +10,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $text_idsuc = htmlspecialchars(trim($_POST['text_idsuc'] ?? ''));
     $text_dessuc = htmlspecialchars(trim($_POST['text_dessuc'] ?? ''));
 
-    // echo "ID, " . htmlspecialchars($text_idsuc) . "!";
-    $Continuar = 'si';
+    // Validate fields
+    $menssage = '';
+    $menssage .= valida_campo($text_idsuc, 'alfanumerico', 'ID');
+    $menssage .= valida_campo($text_dessuc, 'texto', 'Descripción');
 
-    //   if ($Continuar == 'si') {
-    if ($text_idsuc == '') {
-        $message = 'Especifique el ID.';
-        $Continuar = 'no';
-    }
-    //   }
-
-    //   if ($Continuar == 'si') {
-    if ($text_dessuc == '') {
-        $message .= '<br>' . 'Especifique la descripción.';
-        $Continuar = 'no';
-    }
-    //   }
-
-    if ($Continuar == 'si') {
+    if (empty($menssage)) {
         $url = 'graba_sucursal.php?text_idsuc=' . $_POST['text_idsuc'];
         $url .= '&text_dessuc=' . $_POST['text_dessuc'];
         echo "<SCRIPT>window.location='$url';</SCRIPT>";
-    } else
+    } else {
         $text_idsuc = strtoupper(trim($_REQUEST['text_idsuc']));
-    $text_dessuc = strtoupper(trim($_REQUEST['text_dessuc']));
+        $text_dessuc = strtoupper(trim($_REQUEST['text_dessuc']));
+    }
 } else {
     $text_idsuc = strtoupper(trim($_REQUEST['text_idsuc'] ?? ''));
     $text_dessuc = strtoupper(trim($_REQUEST['text_dessuc'] ?? ''));
     if (isset($_REQUEST['mensaje'])) {
-        $message = $_REQUEST['mensaje'];
+        $menssage = $_REQUEST['mensaje'];
     } else {
         $menssage = '';
     }
@@ -82,9 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
 
 
-        <?php if (!empty($message)): ?>
+        <?php if (!empty($menssage)): ?>
             <div class="ledger-response">
-                <?php echo $message; ?>
+                <?php echo $menssage; ?>
             </div>
         <?php endif; ?>
     </div>

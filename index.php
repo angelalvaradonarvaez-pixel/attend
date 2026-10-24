@@ -1,6 +1,6 @@
  
 <?php
-session_start();
+
 if (!isset($_GET['topic'])) {
     $tema = 'Menu';
 } else {
