@@ -1,46 +1,66 @@
+<?php
+// Database configuration
+$host = 'localhost';
+$dbname = 'your_database';
+$user = 'your_username';
+$password = 'your_password';
+
+$row = null;
+$error = null;
+
+try {
+    // Connect to PostgreSQL using PDO
+    $dsn = "pgsql:host=$host;dbname=$dbname";
+    $pdo = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+
+    // Prepare and execute the query safely using a named parameter
+    $stmt = $pdo->prepare("SELECT idsuc, dessuc FROM your_table_name WHERE idsuc = :idsuc");
+    $stmt->execute(['idsuc' => 'uno']);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    $error = "Database connection or query failed: " . $e->getMessage();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Request Method Example</title>
+    <title>PostgreSQL Row Display</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; }
-        .box { padding: 15px; border-radius: 5px; margin-bottom: 20px; }
-        .get { background-color: #e7f3fe; border-left: 6px solid #2196F3; }
-        .post { background-color: #d4edda; border-left: 6px solid #28a745; }
+        table { border-collapse: collapse; width: 400px; margin-top: 15px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #f8f9fa; }
+        .error { color: #dc3545; }
     </style>
 </head>
 <body>
 
-    <h2>PHP $_SERVER["REQUEST_METHOD"] Example</h2>
+    <h2>Record Details</h2>
 
-    <?php
-    // Check if the request method is POST
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve data sent via the form
-        $name = htmlspecialchars($_POST["username"]);
-        echo '<div class="box post">';
-        echo "<h3>Form Submitted via POST!</h3>";
-        echo "Hello, <strong>" . $name . "</strong>. Your data was processed securely.";
-        echo '</div>';
-    } 
-    // Check if the request method is GET
-    elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
-        echo '<div class="box get">';
-        echo "<h3>Page Loaded via GET</h3>";
-        echo "You are viewing this page normally or through a link.";
-        echo '</div>';
-    }
-    ?>
-
-    <hr>
-
-    <!-- Simple Form that submits back to this same page using POST -->
-    <form method="POST" action="">
-        <label for="username">Enter your name:</label><br><br>
-        <input type="text" id="username" name="username" required>
-        <button type="submit">Submit Data</button>
-    </form>
+    <?php if ($error): ?>
+        <p class="error"><?= htmlspecialchars($error) ?></p>
+    <?php elseif ($row): ?>
+        <table>
+            <tr>
+                <th>Column</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td><strong>idsuc</strong></td>
+                <td><?= htmlspecialchars($row['idsuc']) ?></td>
+            </tr>
+            <tr>
+                <td><strong>dessuc</strong></td>
+                <td><?= htmlspecialchars($row['dessuc']) ?></td>
+            </tr>
+        </table>
+    <?php else: ?>
+        <p>No record found where <code>idsuc</code> is 'uno'.</p>
+    <?php endif; ?>
 
 </body>
 </html>

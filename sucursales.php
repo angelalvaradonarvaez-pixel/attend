@@ -1,14 +1,12 @@
 <?php
-
 require_once './definitions.php';
 require_once './menu_functions.php';
 
-   if (isset($_REQUEST['mensaje'])) {
-        $message = $_REQUEST['mensaje'];
-    } else {
-        $menssage = '';
-    }
-
+if (isset($_REQUEST['mensaje'])) {
+    $message = $_REQUEST['mensaje'];
+} else {
+    $message = '';
+}
 // Database Configuration (Update with your PostgreSQL credentials)
 $host = 'localhost';
 $port = '5432';
@@ -83,17 +81,14 @@ if ($dbconn) {
 <body>
 
     <h1>Sucursales</h1>
-
      <?php echo sucursales_steampunk_menu($menu_sucursales); ?>
      <br>
-
     <div class="steampunk-container">
         <?php if (!empty($db_error)): ?>
             <div class="error-box">
                 <?php echo htmlspecialchars($db_error); ?>
             </div>
         <?php endif; ?>
-
         <!-- Rows per page selector form -->
         <form method="GET" action="" class="controls-bar">
             <div>
@@ -108,7 +103,6 @@ if ($dbconn) {
             <!-- Preserve page context or reset to 1 on limit modification -->
             <input type="hidden" name="page" value="1">
         </form>
-
         <!-- Data Grid Table -->
         <table class="ledger-table">
             <thead>
@@ -121,11 +115,9 @@ if ($dbconn) {
             <tbody>
                 <?php if (!empty($records)): ?>
                     <?php foreach ($records as $row): ?>
-                        <tr>
-                            
-                             <td><input value='-' alt='Borrar' onclick='confirma_borrado("<?php echo $row['idsuc']; ?>","sucursal")' type='button' ></td>                           
-                             
-                             <td><?php echo htmlspecialchars($row['idsuc']); ?></td> 
+                        <tr>                            
+                            <td><input value='-' alt='Borrar' onclick='confirma_borrado("<?php echo $row['idsuc']; ?>","sucursal")' type='button' ></td>   
+                            <td><a href='editar_sucursal.php?idsuc=<?php echo $row['idsuc']; ?>'><?php echo htmlspecialchars($row['idsuc']); ?></a></td>                                          
                             <td><?php echo htmlspecialchars($row['dessuc']); ?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -136,7 +128,6 @@ if ($dbconn) {
                 <?php endif; ?>
             </tbody>
         </table>
-
         <!-- Pagination Controls -->
         <?php if ($total_pages > 1): ?>
             <div class="pagination">
@@ -151,14 +142,11 @@ if ($dbconn) {
                 <?php endif; ?>
             </div>
         <?php endif; ?>
-
     </div>
-
       <?php if (!empty($message)): ?>
             <div class="ledger-response">
                 <?php echo $message; ?>
             </div>
         <?php endif; ?>
-
 </body>
 </html>

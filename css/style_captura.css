@@ -77,7 +77,15 @@
             border-color: var(--brass-light);
             background: #fff;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 0 8px rgba(212, 175, 55, 0.6);
-        }
+        }       
+
+        input[type="text"]:read-only,
+        input[type="number"]:read-only {
+            background: #ebe6a0;
+            color: #394704;
+        }       
+
+
 
         /* Hide increment/decrement spinner arrows for numeric inputs */
         input[type=number]::-webkit-inner-spin-button, 
@@ -126,3 +134,5 @@
             font-size: 1.05rem;
             text-align: center;
         }
+
+    

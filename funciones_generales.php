@@ -9,8 +9,7 @@ function valida_campo(string $text, string $tipo,string $nombre_campo): string
 {
     $message_error = '';
     switch ($tipo) {
-        case 'alfanumerico':
-              
+        case 'alfanumerico':              
             if (empty($text)) {                
                 $message_error = '<br> Especifique el ' . $nombre_campo . '.';
             } else {
@@ -23,11 +22,8 @@ function valida_campo(string $text, string $tipo,string $nombre_campo): string
             if (empty($text)) {
                 $message_error = '<br> Especifique la ' . $nombre_campo . '.';
             }
-            break;
-
-            
+            break;            
     }
-
     return ($message_error);
 }
 
