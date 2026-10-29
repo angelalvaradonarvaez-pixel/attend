@@ -47,7 +47,7 @@ function sucursales_steampunk_menu($menu_sucursales)
          <a href="agregar_sucursal.php?topic=<?php echo htmlspecialchars($topic['title']); ?>" class="menu-link">
     <?php break; ?>
         <?php case 'Buscar': ?>
-         <a href="buscar_sucursal.php?topic=<?php echo htmlspecialchars($topic['title']); ?>" class="menu-link">
+         <a href="prepara_busqueda_sucursal.php?topic=<?php echo htmlspecialchars($topic['title']); ?>" class="menu-link">
     <?php break; ?>
    
     <?php    } ?>
