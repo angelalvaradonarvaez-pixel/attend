@@ -37,7 +37,7 @@ if ($row) {  // REGISTRO EXISTE
     $url .= '&color=green';
     echo "<SCRIPT>window.location='$url';</SCRIPT>";
 } else {  // REGISTRO NO EXISTE
-    $url = 'prepara_busqueda_sucursal.php?mensaje=En la sucursal ' . $idsuc . '   ! no fue encontrada. !';;
+    $url = 'prepara_busqueda_sucursal.php?mensaje=La sucursal ' . $idsuc . '   ! no fue encontrada. !';;
     $url .= '&color=green';
     echo "<SCRIPT>window.location='$url';</SCRIPT>";
 }

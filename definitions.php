@@ -37,7 +37,7 @@ $menu_data = [
     ]
 ];
 
-$menu_sucursales = [
+$menu_abc = [
     [
         'title' => 'Agregar',
         'subtopics' => [

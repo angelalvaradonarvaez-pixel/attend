@@ -81,7 +81,7 @@ if ($dbconn) {
 <body>
 
     <h1>Sucursales</h1>
-     <?php echo sucursales_steampunk_menu($menu_sucursales); ?>
+     <?php echo sucursales_steampunk_menu($menu_abc); ?>
      <br>
     <div class="steampunk-container">
         <?php if (!empty($db_error)): ?>

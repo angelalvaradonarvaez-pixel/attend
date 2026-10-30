@@ -31,13 +31,13 @@ function render_steampunk_menu($menu_data)
     return ob_get_clean();
 }
 
-function sucursales_steampunk_menu($menu_sucursales)
+function sucursales_steampunk_menu($menu)
 {
     ob_start();
     ?>
     <nav>
         <ul class="steampunk-menu">
-            <?php foreach ($menu_sucursales as $topic_key => $topic): ?>
+            <?php foreach ($menu as $topic_key => $topic): ?>
                 <li class="menu-item">
    <?php switch ($topic['title']) {
             case 'Menu': ?>
@@ -48,6 +48,38 @@ function sucursales_steampunk_menu($menu_sucursales)
     <?php break; ?>
         <?php case 'Buscar': ?>
          <a href="prepara_busqueda_sucursal.php?topic=<?php echo htmlspecialchars($topic['title']); ?>" class="menu-link">
+    <?php break; ?>
+   
+    <?php    } ?>
+                    <!-- Pass the topic identifier in the URL -->
+                        <?php echo htmlspecialchars($topic['title']); ?>
+                    </a>
+      
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
+    <?php
+    return ob_get_clean();
+}
+
+function departamentos_steampunk_menu($menu)
+{
+    ob_start();
+    ?>
+    <nav>
+        <ul class="steampunk-menu">
+            <?php foreach ($menu as $topic_key => $topic): ?>
+                <li class="menu-item">
+   <?php switch ($topic['title']) {
+            case 'Menu': ?>
+         <a href="index.php?topic=<?php echo htmlspecialchars($topic['title']); ?>" class="menu-link">
+    <?php break; ?>
+        <?php case 'Agregar': ?>
+         <a href="agregar_departamento.php?topic=<?php echo htmlspecialchars($topic['title']); ?>" class="menu-link">
+    <?php break; ?>
+        <?php case 'Buscar': ?>
+         <a href="prepara_busqueda_departamento.php?topic=<?php echo htmlspecialchars($topic['title']); ?>" class="menu-link">
     <?php break; ?>
    
     <?php    } ?>

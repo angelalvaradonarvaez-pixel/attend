@@ -3,11 +3,11 @@
 // --------------------------------------------------------------------------------
 //        SE FORMATEAN  (A MAYUSCULAS)  LAS VARIABLES
 // ----------------------------------------------------------------------------------
-$idsuc = htmlspecialchars($_REQUEST['text_idsuc']);
-$dessuc = htmlspecialchars($_REQUEST['text_dessuc']);
+$iddep = htmlspecialchars($_REQUEST['text_iddep']);
+$desdep = htmlspecialchars($_REQUEST['text_desdep']);
 
-$idsuc = strtoupper($idsuc);
-$dessuc = strtoupper($dessuc);
+$iddep = strtoupper($iddep);
+$desdep = strtoupper($desdep);
 // --------------------------------------------------------------------------------------------------------------------
 //            SE VALIDA QUE LA SUCURSAL NO ESTE REPETIDA
 // ---------------------------------------------------------------------------------------------------------------------
@@ -26,12 +26,12 @@ try {
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
     // The value you want to look up in the 'idsuc' column
-    $targetId = $idsuc;
+    $targetId = $iddep;
     // Prepare the SQL query using LIMIT 1 for performance
-    $sql = 'SELECT 1 FROM public."Sucursales" WHERE "idsuc" = :idsuc LIMIT 1';
+    $sql = 'SELECT 1 FROM public."Departamentos" WHERE "iddep" = :iddep LIMIT 1';
     $stmt = $pdo->prepare($sql);
     // Execute the query securely with the parameter binding
-    $stmt->execute(['idsuc' => $targetId]);
+    $stmt->execute(['iddep' => $targetId]);
     // fetchColumn() returns the first column of the next row, or false if no rows exist
     $exists = $stmt->fetchColumn() !== false;
 } catch (\PDOException $e) {
@@ -40,10 +40,10 @@ try {
 // -------------------------------------------------------------------------------------------
 if ($exists)  // REGISTRO YA EXISTE
 {
-    $url = 'agregar_sucursal.php?mensaje=la sucursal ' . $idsuc . ' ! ya existe  !';;
+    $url = 'agregar_departamento.php?mensaje=El departamento ' . $iddep . ' ! ya existe  !';;
     $url .= '&color=red';
-    $url .= '&text_idsuc=' . $_REQUEST['text_idsuc'];
-    $url .= '&text_dessuc=' . $_REQUEST['text_dessuc'];
+    $url .= '&text_iddep=' . $_REQUEST['text_iddep'];
+    $url .= '&text_desdep=' . $_REQUEST['text_desdep'];
     echo "<SCRIPT>window.location='$url';</SCRIPT>";
 } else {
     // ---------------------------------------------------
@@ -51,14 +51,14 @@ if ($exists)  // REGISTRO YA EXISTE
     // ----------------------------------------------------
     try {
         //   LA CONEXIÓN YA ESTÁ ESTABLECIDA ARRIBA, SOLO SE PREPARA LA CONSULTA
-        $sql = 'INSERT INTO public."Sucursales" (idsuc, dessuc) VALUES (:idsuc, :dessuc)';
+        $sql = 'INSERT INTO public."Departamentos" (iddep, desdep) VALUES (:iddep, :desdep)';
         // Prepare and execute statement
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
-            ':idsuc' => $idsuc,
-            ':dessuc' => $dessuc
+            ':iddep' => $iddep,
+            ':desdep' => $desdep
         ]);
-        $url = 'sucursales.php?mensaje=la sucursal ' . $idsuc . '  ! se ha registrado correctamente !';;
+        $url = 'departamentos.php?mensaje=El departamento ' . $iddep . '  ! se ha registrado correctamente !';;
         $url .= '&color=green';
         echo "<SCRIPT>window.location='$url';</SCRIPT>";
     } catch (PDOException $e) {

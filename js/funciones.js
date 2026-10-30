@@ -7,8 +7,8 @@ function confirma_borrado(id,modulo)
            case "sucursal":  
                 document.location.href = "borra_sucursal.php?registro="+id;        
            break;
-           case "cargadas":  
-                document.location.href = "til/borra_cargada.php?registro="+registro; 
+           case "departamento":  
+                document.location.href = "borra_departamento.php?registro="+id; 
            break;
            case "importaciones":  
                 document.location.href = "til/borra_importacion.php?registro="+registro; 
@@ -28,8 +28,8 @@ function regresar(modulo){
            case "sucursal":  
                 document.location.href = "sucursales.php";
            break;
-           case "cargadas":  
-                document.location.href = "til/borra_cargada.php?registro="+registro; 
+           case "departamento":  
+                document.location.href = "departamentos.php";    
            break;
            case "importaciones":  
                 document.location.href = "til/borra_importacion.php?registro="+registro; 
