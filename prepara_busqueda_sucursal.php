@@ -2,14 +2,14 @@
 require_once './funciones_generales.php';
 // Initialize variables for feedback message
 $text_idsuc = '';
-$text_dessuc = '';
+//$text_dessuc = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // POST request, process form submission
     // Capture and sanitize inputs
     $text_idsuc = htmlspecialchars(trim($_POST['text_idsuc'] ?? ''));
     // Validate fields
     $message = '';
-    $message .= valida_campo($text_idsuc, 'alfanumerico', 'ID');
-  //  $message .= valida_campo($text_dessuc, 'texto', 'Descripción');
+    $message .= valida_campo($text_idsuc, 'alfanumerico', 'ID','El');
+    //  $message .= valida_campo($text_dessuc, 'texto', 'Descripción');
     if (empty($message)) {  // TODOS LOS CAMPOS SON VALIDOS
         $url = 'busca_sucursal.php?text_idsuc=' . $_POST['text_idsuc'];
         echo "<SCRIPT>window.location='$url';</SCRIPT>";

@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // POST request, process form submi
     $text_dessuc = htmlspecialchars(trim($_POST['text_dessuc'] ?? ''));
     // Validate fields
     $message = '';
-    $message .= valida_campo($text_idsuc, 'alfanumerico', 'ID');
-    $message .= valida_campo($text_dessuc, 'texto', 'Descripción');
+    $message .= valida_campo($text_idsuc, 'alfanumerico', 'ID','El');
+    $message .= valida_campo($text_dessuc, 'texto', 'Descripción','La');
     if (empty($message)) {
         $url = 'graba_sucursal.php?text_idsuc=' . $_POST['text_idsuc'];
         $url .= '&text_dessuc=' . $_POST['text_dessuc'];

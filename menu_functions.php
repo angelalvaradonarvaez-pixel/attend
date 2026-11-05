@@ -95,5 +95,37 @@ function departamentos_steampunk_menu($menu)
     return ob_get_clean();
 }
 
+function usuarios_steampunk_menu($menu)
+{
+    ob_start();
+    ?>
+    <nav>
+        <ul class="steampunk-menu">
+            <?php foreach ($menu as $topic_key => $topic): ?>
+                <li class="menu-item">
+   <?php switch ($topic['title']) {
+            case 'Menu': ?>
+         <a href="index.php?topic=<?php echo htmlspecialchars($topic['title']); ?>" class="menu-link">
+    <?php break; ?>
+        <?php case 'Agregar': ?>
+         <a href="agregar_usuario.php?topic=<?php echo htmlspecialchars($topic['title']); ?>" class="menu-link">
+    <?php break; ?>
+        <?php case 'Buscar': ?>
+         <a href="prepara_busqueda_usuario.php?topic=<?php echo htmlspecialchars($topic['title']); ?>" class="menu-link">
+    <?php break; ?>
+   
+    <?php    } ?>
+                    <!-- Pass the topic identifier in the URL -->
+                        <?php echo htmlspecialchars($topic['title']); ?>
+                    </a>
+      
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
+    <?php
+    return ob_get_clean();
+}
+
 ?>
  

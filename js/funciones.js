@@ -10,8 +10,8 @@ function confirma_borrado(id,modulo)
            case "departamento":  
                 document.location.href = "borra_departamento.php?registro="+id; 
            break;
-           case "importaciones":  
-                document.location.href = "til/borra_importacion.php?registro="+registro; 
+           case "usuario":  
+                document.location.href = "borra_usuario.php?registro="+id; 
            break;
 
            }
@@ -31,9 +31,24 @@ function regresar(modulo){
            case "departamento":  
                 document.location.href = "departamentos.php";    
            break;
-           case "importaciones":  
-                document.location.href = "til/borra_importacion.php?registro="+registro; 
+           case "usuario":  
+                document.location.href = "usuarios.php"; 
            break;
 
            }
 }
+
+function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('text_contra');
+        const toggleIcon = document.getElementById('togglePass');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash'); // Changes icon to a "hidden" eye
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye'); // Changes icon back to a regular eye
+        }
+    }

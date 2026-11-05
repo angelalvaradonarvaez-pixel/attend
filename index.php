@@ -47,7 +47,24 @@ require_once './menu_functions.php';
                 <?php echo " <script>document.location.href= './sucursales.php'; </script>"; ?>
          <?php break;
         } ?>    
+     <?php break; ?>
+<?php case 'Configuración': ?>
+        <?php switch ($subtema) {
+            case 'Periodos': ?>
+               <?php echo " <script>document.location.href= './periodos.php'; </script>"; ?>
+          <?php break; ?> 
+          <?php case 'Biométricos': ?>
+               <?php echo " <script>document.location.href= './biometricos.php'; </script>"; ?>
+          <?php break; ?> 
+          <?php case 'Usuarios': ?>
+               <?php echo " <script>document.location.href= './usuarios.php'; </script>"; ?>
+          <?php break; ?> 
+          <?php case 'Empresa': ?>
+                <?php echo " <script>document.location.href= './empresa.php'; </script>"; ?>
+         <?php break;
+        } ?>    
     <?php break; ?>
+
    
     <?php } ?>
  

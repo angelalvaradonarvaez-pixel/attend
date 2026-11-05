@@ -55,9 +55,32 @@
             font-size: 0.95rem;
         }
 
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--parchment);
+            color: #2c221e;
+            border: 2px solid var(--brass-mid);
+            font-family: 'IM Fell English', serif;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+            border-radius: 2px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--brass-light);
+            background: #fff;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 0 8px rgba(212, 175, 55, 0.6);
+        }
+
         /* Input styling with parchment look */
+   
         input[type="text"],
-        input[type="number"] {
+        input[type="number"], 
+        input[type="password"] {
             width: 100%;
             padding: 12px 15px;
             background: var(--parchment);
@@ -72,7 +95,8 @@
         }
 
         input[type="text"]:focus,
-        input[type="number"]:focus {
+        input[type="number"]:focus,
+        input[type="password"]:focus {
             outline: none;
             border-color: var(--brass-light);
             background: #fff;
@@ -136,3 +160,21 @@
         }
 
     
+     
+        .password-wrapper {
+            position: relative;
+        }
+        .password-wrapper input {
+            padding-right: 40px; /* Make room for the icon */
+        }
+        .password-wrapper i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+        .password-wrapper i:hover {
+            color: #000;
+        }

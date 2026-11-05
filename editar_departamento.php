@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // SI LA PAGINA SE LLAMA A SI MISMA
     $text_desdep = htmlspecialchars(trim($_POST['text_desdep'] ?? ''));
     // Validate fields
     $message = '';
-    $message .= valida_campo($text_desdep, 'texto', 'Descripción');
+    $message .= valida_campo($text_desdep, 'texto', 'Descripción','La');
     if (empty($message)) {
         $url = 'graba_edicion_departamento.php?text_iddep=' . $_POST['text_iddep'];
         $url .= '&text_desdep=' . $_POST['text_desdep'];

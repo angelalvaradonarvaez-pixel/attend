@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // POST request, process form submi
     $text_desdep = htmlspecialchars(trim($_POST['text_desdep'] ?? ''));
     // Validate fields
     $message = '';
-    $message .= valida_campo($text_iddep, 'alfanumerico', 'ID');
-    $message .= valida_campo($text_desdep, 'texto', 'Descripción');
+    $message .= valida_campo($text_iddep, 'alfanumerico', 'ID','El');
+    $message .= valida_campo($text_desdep, 'texto', 'Descripción','La');
     if (empty($message)) {
         $url = 'graba_departamento.php?text_iddep=' . $_POST['text_iddep'];
         $url .= '&text_desdep=' . $_POST['text_desdep'];

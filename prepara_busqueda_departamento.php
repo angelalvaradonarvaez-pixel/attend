@@ -2,13 +2,13 @@
 require_once './funciones_generales.php';
 // Initialize variables for feedback message
 $text_iddep = '';
-$text_desdep = '';
+//$text_desdep = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // POST request, process form submission
     // Capture and sanitize inputs
     $text_iddep = htmlspecialchars(trim($_POST['text_iddep'] ?? ''));
     // Validate fields
     $message = '';
-    $message .= valida_campo($text_iddep, 'alfanumerico', 'ID');
+    $message .= valida_campo($text_iddep, 'alfanumerico', 'ID','El');
     //  $message .= valida_campo($text_dessuc, 'texto', 'Descripción');
     if (empty($message)) {  // TODOS LOS CAMPOS SON VALIDOS
         $url = 'busca_departamento.php?text_iddep=' . $_POST['text_iddep'];
