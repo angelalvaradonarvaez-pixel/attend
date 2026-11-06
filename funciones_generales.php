@@ -32,6 +32,14 @@ function valida_campo(string $text, string $tipo, string $nombre_campo, string $
                 }
             }
             break;
+        case 'seleccionado':
+            echo "paso por seleccionado";
+            echo "<br>";
+            echo "valor de text: " . $text;
+            if (empty($text)) {
+                $message_error = '<br> '.'Especifique ' .  strtolower($pronombre) . ' ' . strtolower($nombre_campo) . '.';
+            }
+            break;
     }
     return ($message_error);
 }

@@ -5,9 +5,13 @@
 // ----------------------------------------------------------------------------------
 $usuario = htmlspecialchars($_REQUEST['text_usuario']);
 $nombre = htmlspecialchars($_REQUEST['text_nombre']);
+$contra = htmlspecialchars($_REQUEST['text_contra']);
+$lst_tipo = htmlspecialchars($_REQUEST['lsttipo'] ?? '');
 
 $usuario = strtoupper($usuario);
 $nombre = strtoupper($nombre);
+//$contra = $contra;
+//$lst_tipo = $lst_tipo;
 // --------------------------------------------------------------------------------------------------------------------
 //            SE VALIDA QUE EL DEPARTAMENTO NO ESTE REPETIDO
 // ---------------------------------------------------------------------------------------------------------------------
@@ -44,6 +48,8 @@ if ($exists)  // REGISTRO YA EXISTE
     $url .= '&color=red';
     $url .= '&text_usuario=' . $_REQUEST['text_usuario'];
     $url .= '&text_nombre=' . $_REQUEST['text_nombre'];
+    $url .= '&text_contra=' . $_REQUEST['text_contra'];
+    $url .= '&lsttipo=' . $_REQUEST['lsttipo'];
     echo "<SCRIPT>window.location='$url';</SCRIPT>";
 } else {
     // ---------------------------------------------------
@@ -51,12 +57,14 @@ if ($exists)  // REGISTRO YA EXISTE
     // ----------------------------------------------------
     try {
         //   LA CONEXIÓN YA ESTÁ ESTABLECIDA ARRIBA, SOLO SE PREPARA LA CONSULTA
-        $sql = 'INSERT INTO public."usuarios" ("usuario", "nombre") VALUES (:usuario, :nombre)';
+        $sql = 'INSERT INTO public."usuarios" ("usuario", "nombre", "contra", "tipo") VALUES (:usuario, :nombre, :contra, :tipo)';
         // Prepare and execute statement
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':usuario' => $usuario,
-            ':nombre' => $nombre
+            ':nombre' => $nombre,
+            ':contra' => $contra,
+            ':tipo' => $lst_tipo
         ]);
         $url = 'usuarios.php?mensaje=el usuario ' . $usuario . '  ! se ha registrado correctamente !';;
         $url .= '&color=green';

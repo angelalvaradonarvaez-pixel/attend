@@ -5,9 +5,13 @@
 // ----------------------------------------------------------------------------------
 $usuario = htmlspecialchars($_REQUEST['text_usuario']);
 $nombre = htmlspecialchars($_REQUEST['text_nombre']);
+$contra = htmlspecialchars($_REQUEST['text_contra']);
+$lst_tipo = htmlspecialchars($_REQUEST['lsttipo'] ?? '');
 
 $usuario = strtoupper($usuario);
 $nombre = strtoupper($nombre);
+//$contra = $contra;
+//$lst_tipo = $lst_tipo;
 
 // Database configuration
 $host = 'localhost';
@@ -23,11 +27,13 @@ try {
 
     // Variables for the update
     $success = false;
-    $sql = 'UPDATE public."usuarios" SET nombre = :nombre WHERE usuario = :usuario';
+    $sql = 'UPDATE public."usuarios" SET nombre = :nombre, contra = :contra, tipo = :tipo WHERE usuario = :usuario';
     $stmt = $pdo->prepare($sql);
     $success = $stmt->execute([
         ':usuario' => $usuario,
-        ':nombre' => $nombre
+        ':nombre' => $nombre,
+        ':contra' => $contra,
+        ':tipo' => $lst_tipo
     ]);
 
     // Call the function

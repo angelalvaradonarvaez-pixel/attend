@@ -4,31 +4,39 @@ require_once './funciones_generales.php';
 $text_usuario = '';
 $text_nombre = '';
 $text_contra = '';
+$lst_tipo = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // POST request, process form submission
     // Capture and sanitize inputs
     $text_usuario = htmlspecialchars(trim($_POST['text_usuario'] ?? ''));
     $text_nombre = htmlspecialchars(trim($_POST['text_nombre'] ?? ''));
     $text_contra = htmlspecialchars(trim($_POST['text_contra'] ?? ''));
+    $lst_tipo = htmlspecialchars(trim($_POST['lsttipo'] ?? ''));
     // Validate fields
     $message = '';
     $message .= valida_campo($text_usuario, 'alfanumerico', 'Usuario', 'El');
     $message .= valida_campo($text_nombre, 'texto', 'Nombre', 'El');
     $message .= valida_campo($text_contra, 'password', 'Contraseña', 'La');
+    $message .= valida_campo($lst_tipo, 'seleccionado', 'Tipo de usuario', 'El');
+
     if (empty($message)) {
         $url = 'graba_usuario.php?text_usuario=' . $_POST['text_usuario'];
         $url .= '&text_nombre=' . $_POST['text_nombre'];
         $url .= '&text_contra=' . $_POST['text_contra'];
+        $url .= '&lsttipo=' . $_POST['lsttipo'];
         echo "<SCRIPT>window.location='$url';</SCRIPT>";
     } else {
         $text_usuario = strtoupper(trim($_REQUEST['text_usuario']));
         $text_nombre = strtoupper(trim($_REQUEST['text_nombre']));
         $text_contra = $_REQUEST['text_contra'];
+        $lst_tipo = $_REQUEST['lsttipo'] ?? '';
     }
 } else {  // GET request, initialize form fields with request parameters if available
     $text_usuario = strtoupper(trim($_REQUEST['text_usuario'] ?? ''));
     $text_nombre = strtoupper(trim($_REQUEST['text_nombre'] ?? ''));
-    // $text_contra = $_REQUEST['text_contra'] ?? '';
+    $text_contra = trim($_REQUEST['text_contra'] ?? '');
+    $lst_tipo = $_REQUEST['lsttipo'] ?? '';
+
     if (isset($_REQUEST['mensaje'])) {
         $message = $_REQUEST['mensaje'];
     } else {
@@ -69,11 +77,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // POST request, process form submi
             </div>
 
             <div class="form-group">
-                <label for="country">Tipo de usuario:</label>
-                <select id="country" name="country">
-                    <option value="" disabled selected>-- Select an option --</option>
-                    <option value="administrador">Administrador</option>
-                    <option value="capturista">Capturista</option>                    
+                <label for="lsttipo">Tipo de usuario:</label>
+                <select id="lsttipo" name="lsttipo">
+                    <option value="" disabled <?php echo ($lst_tipo == '') ? 'selected' : ''; ?>>-- Seleccione una opción --</option>
+                    <option value="administrador" <?php echo ($lst_tipo == 'administrador') ? 'selected' : ''; ?>>Administrador</option>
+                    <option value="capturista" <?php echo ($lst_tipo == 'capturista') ? 'selected' : ''; ?>>Capturista</option>                    
                </select>
             </div>       
        
