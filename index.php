@@ -48,7 +48,18 @@ require_once './menu_functions.php';
          <?php break;
         } ?>    
      <?php break; ?>
-<?php case 'Configuración': ?>
+<?php case 'Directorios': ?>
+        <?php switch ($subtema) {
+            case 'Empleados': ?>
+               <?php echo " <script>document.location.href= './empleados.php'; </script>"; ?>
+          <?php break; ?> 
+          <?php case 'Patrones': ?>
+               <?php echo " <script>document.location.href= './patrones.php'; </script>"; ?>
+          <?php break; ?> 
+          <?php } ?>       
+    <?php break; ?>
+
+     <?php case 'Configuración': ?>
         <?php switch ($subtema) {
             case 'Periodos': ?>
                <?php echo " <script>document.location.href= './periodos.php'; </script>"; ?>

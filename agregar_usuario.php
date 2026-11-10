@@ -27,13 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // POST request, process form submi
         echo "<SCRIPT>window.location='$url';</SCRIPT>";
     } else {
         $text_usuario = strtoupper(trim($_REQUEST['text_usuario']));
-        $text_nombre = strtoupper(trim($_REQUEST['text_nombre']));
+        $text_nombre = trim($_REQUEST['text_nombre']);
         $text_contra = $_REQUEST['text_contra'];
         $lst_tipo = $_REQUEST['lsttipo'] ?? '';
     }
 } else {  // GET request, initialize form fields with request parameters if available
     $text_usuario = strtoupper(trim($_REQUEST['text_usuario'] ?? ''));
-    $text_nombre = strtoupper(trim($_REQUEST['text_nombre'] ?? ''));
+    $text_nombre = trim($_REQUEST['text_nombre'] ?? '');
     $text_contra = trim($_REQUEST['text_contra'] ?? '');
     $lst_tipo = $_REQUEST['lsttipo'] ?? '';
 

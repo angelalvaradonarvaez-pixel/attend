@@ -7,7 +7,7 @@ $iddep = htmlspecialchars($_REQUEST['text_iddep']);
 $desdep = htmlspecialchars($_REQUEST['text_desdep']);
 
 $iddep = strtoupper($iddep);
-$desdep = strtoupper($desdep);
+//$desdep = strtoupper($desdep);
 
 // Database configuration
 $host = 'localhost';

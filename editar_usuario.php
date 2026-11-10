@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // SI LA PAGINA SE LLAMA A SI MISMA
         echo "<SCRIPT>window.location='$url';</SCRIPT>";
     } else {
         $text_usuario = strtoupper(trim($_REQUEST['text_usuario']));
-        $text_nombre = strtoupper(trim($_REQUEST['text_nombre']));
+        $text_nombre = trim($_REQUEST['text_nombre']);
         $text_contra = $_REQUEST['text_contra'];
         $lst_tipo = $_REQUEST['lsttipo'] ?? '';
     }
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // SI LA PAGINA SE LLAMA A SI MISMA
     // -------------------------------------------------------------------------------------------
     if ($row) {
         $text_usuario = strtoupper(trim($row['usuario']));
-        $text_nombre = strtoupper(trim($row['nombre']));
+        $text_nombre = trim($row['nombre']);
         $text_contra = $row['contra'];
         $lst_tipo = $row['tipo'];
     } else {  // REGISTRO NO EXISTE

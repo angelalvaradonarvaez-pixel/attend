@@ -7,7 +7,7 @@ $idsuc = htmlspecialchars($_REQUEST['text_idsuc']);
 $dessuc = htmlspecialchars($_REQUEST['text_dessuc']);
 
 $idsuc = strtoupper($idsuc);
-$dessuc = strtoupper($dessuc);
+//$dessuc = strtoupper($dessuc);
 
 // Database configuration
 $host = 'localhost';

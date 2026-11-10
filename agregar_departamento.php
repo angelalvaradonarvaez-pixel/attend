@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // POST request, process form submi
     }
 } else {  // GET request, initialize form fields with request parameters if available
     $text_iddep = strtoupper(trim($_REQUEST['text_iddep'] ?? ''));
-    $text_desdep = strtoupper(trim($_REQUEST['text_desdep'] ?? ''));
+    $text_desdep = trim($_REQUEST['text_desdep'] ?? '');
     if (isset($_REQUEST['mensaje'])) {
         $message = $_REQUEST['mensaje'];
     } else {

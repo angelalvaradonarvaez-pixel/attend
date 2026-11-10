@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // SI LA PAGINA SE LLAMA A SI MISMA
     // -------------------------------------------------------------------------------------------
     if ($row) {
         $text_iddep = strtoupper(trim($row['iddep']));
-        $text_desdep = strtoupper(trim($row['desdep']));
+        $text_desdep = trim($row['desdep']);
     } else {  // REGISTRO NO EXISTE
         $url = 'departamentos.php?mensaje=En el departamento ' . $iddep . ' ! hay inconsitencia de datos, llamar al encargado de sistemas. !';;
         $url .= '&color=green';

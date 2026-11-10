@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // SI LA PAGINA SE LLAMA A SI MISMA
         echo "<SCRIPT>window.location='$url';</SCRIPT>";
     } else {
         $text_idsuc = strtoupper(trim($_REQUEST['text_idsuc']));
-        $text_dessuc = strtoupper(trim($_REQUEST['text_dessuc']));
+        $text_dessuc = trim($_REQUEST['text_dessuc']);
     }
 } else {  // SI LA PAGINA SE LLAMA DESDE OTRA PAGINA
     $idsuc = strtoupper(trim($_GET['idsuc'] ?? ''));
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // SI LA PAGINA SE LLAMA A SI MISMA
     // -------------------------------------------------------------------------------------------
     if ($row) {
         $text_idsuc = strtoupper(trim($row['idsuc']));
-        $text_dessuc = strtoupper(trim($row['dessuc']));
+        $text_dessuc = trim($row['dessuc']);
     } else {  // REGISTRO NO EXISTE
         $url = 'sucursales.php?mensaje=En la sucursal ' . $idsuc . ' ! hay inconsitencia de datos, llamar al encargado de sistemas. !';;
         $url .= '&color=green';

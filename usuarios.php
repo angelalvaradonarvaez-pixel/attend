@@ -110,6 +110,7 @@ if ($dbconn) {
                     <th></th> 
                     <th>Usuario</th>
                     <th>Nombre</th>
+                    <th>Tipo</th>
                 </tr>
             </thead>
             <tbody>
@@ -119,6 +120,7 @@ if ($dbconn) {
                             <td><input value='-' alt='Borrar' onclick='confirma_borrado("<?php echo $row['usuario']; ?>","usuario")' type='button' ></td>   
                             <td><a href='editar_usuario.php?usuario=<?php echo $row['usuario']; ?>'><?php echo htmlspecialchars($row['usuario']); ?></a></td>                                          
                             <td><?php echo htmlspecialchars($row['nombre']); ?></td>
+                            <td><?php echo htmlspecialchars($row['tipo']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>

@@ -4,8 +4,8 @@
 //        SE FORMATEAN  (A MAYUSCULAS)  LAS VARIABLES
 // ----------------------------------------------------------------------------------
 $iddep = htmlspecialchars($_REQUEST['text_iddep']);
-
 $iddep = strtoupper($iddep);
+
 // --------------------------------------------------------
 // Database configuration
 $host = 'localhost';

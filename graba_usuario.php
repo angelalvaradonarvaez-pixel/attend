@@ -9,7 +9,7 @@ $contra = htmlspecialchars($_REQUEST['text_contra']);
 $lst_tipo = htmlspecialchars($_REQUEST['lsttipo'] ?? '');
 
 $usuario = strtoupper($usuario);
-$nombre = strtoupper($nombre);
+//$nombre = strtoupper($nombre);
 //$contra = $contra;
 //$lst_tipo = $lst_tipo;
 // --------------------------------------------------------------------------------------------------------------------

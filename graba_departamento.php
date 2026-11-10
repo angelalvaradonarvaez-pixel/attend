@@ -7,7 +7,7 @@ $iddep = htmlspecialchars($_REQUEST['text_iddep']);
 $desdep = htmlspecialchars($_REQUEST['text_desdep']);
 
 $iddep = strtoupper($iddep);
-$desdep = strtoupper($desdep);
+//$desdep = strtoupper($desdep);
 // --------------------------------------------------------------------------------------------------------------------
 //            SE VALIDA QUE EL DEPARTAMENTO NO ESTE REPETIDO
 // ---------------------------------------------------------------------------------------------------------------------
